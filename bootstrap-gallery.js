@@ -1,7 +1,7 @@
 /*
  * Bootstrap gallery
  * https://github.com/ludovicscribe/bootstrap-gallery
- * http://ludovicscribe.fr/blog/galerie-bootstrap
+ * http://ludovicscribe.fr/blog/galerie-images-bootstrap
  *
  * Copyright 2016, Scribe Ludovic
  * http://ludovicscribe.fr/

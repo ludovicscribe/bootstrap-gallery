@@ -6,7 +6,7 @@ To use this script, you just have to include "bootstrap-gallery.css" and "bootst
 
 That's all ! You can now click on a thumbnail to open the gallery.
 
-A more detailed usage description is coming soon.
+A more detailed usage description is coming soon. For more details, you can read my blog : http://ludovicscribe.fr/blog/galerie-images-bootstrap.
 
 Images used in example are rights free, you can download them on Pixabay :
 - Autumn : https://pixabay.com/fr/automne-rivi%C3%A8re-nature-972786/

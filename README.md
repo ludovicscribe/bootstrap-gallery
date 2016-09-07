@@ -1,6 +1,6 @@
 # Bootstrap gallery
 
-With this script and Bootstrap, you will easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : http://ludovicscribe.fr/blog/galerie-images-bootstrap
+With this script and Bootstrap, you will easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : https://ludovicscribe.fr/blog/galerie-images-bootstrap
 
 ## Prerequisites
 
@@ -10,17 +10,17 @@ To use this script you will need Bootstrap, a famous CSS framework, and jQuery. 
 
 Firstly, include "bootstrap-gallery.css" and "bootstrap-gallery.js" files on your page :
 
-'''html
+```html
 <!-- CSS -->
 <link rel="stylesheet" href="boostrap-gallery.css" />
 
 <!-- JS -->
 <script type="text/javascript" src="bootstrap-gallery.js"></script>
-'''
+```
 
 Then, just use the default Bootstrap thumbnail component and set your thumbnail links href attribute to original images :
 
-'''html
+```html
 <div class="container">   
 	<div class="row">
         <div class="col-xs-3">
@@ -48,17 +48,17 @@ Then, just use the default Bootstrap thumbnail component and set your thumbnail 
         </div>
     </div>
 </div>
-'''
+```
 
 Finnaly, declare your gallery selector :
 
-'''html
+```html
 <script type="text/javascript">
 $(document).ready(function() {
 	$('a.thumbnail').bootstrapGallery();
 });
 </script>
-'''
+```
 
 That's all ! You can now click on a thumbnails to open the gallery. The title displayed in gallery is the thumbnail alt attribute.
 
@@ -66,7 +66,7 @@ That's all ! You can now click on a thumbnails to open the gallery. The title di
 
 The selector used to find the next and previous image is the same that was used to open the gallery. So, you can use different selectors to create multiple galleries :
 
-'''html
+```html
 <div class="container">   
     <h2>Gallery 1</h2>
 	
@@ -107,15 +107,15 @@ $(document).ready(function() {
 	$('a.thumbnail.gallery2').bootstrapGallery();
 });
 </script>
-'''
+```
 
 ## Open the gallery with links
 
 You can also open the gallery with a link :
 
-'''html
+```html
 <a href="images/image1.jpg" class="show-gallery" title="My title">Link with title</a>
-'''
+```
 
 In this case, you have to declare your link selector :
 <script type="text/javascript">
@@ -123,7 +123,7 @@ $(document).ready(function() {
 	$('a.show-gallery').bootstrapGallery();
 });
 </script>
-'''
+```
 
 In this case, the title is defined in the title attribute of link.
 

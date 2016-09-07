@@ -1,24 +1,28 @@
 /*
- * Bootstrap gallery
+ * Bootstrap gallery v1.1
  * https://github.com/ludovicscribe/bootstrap-gallery
- * http://ludovicscribe.fr/blog/galerie-images-bootstrap
+ * https://ludovicscribe.fr/blog/galerie-images-bootstrap
  *
  * Copyright 2016, Scribe Ludovic
- * http://ludovicscribe.fr/
+ * https://ludovicscribe.fr/
  */
 
-$(document).ready(function() {
+ $.fn.bootstrapGallery = function() {
 	// Install click event on links
-	$('a.thumbnail, a.show-gallery').click(function() {
-		ExpandImage(this);
+	var selector = this.selector;
+	
+	this.click(function() {
+		ExpandImage(this, selector);
 		return false;
 	});
-	
+};
+
+$(document).ready(function() {	
 	// Install events for left / right keys navigation
 	$(document).keydown(function(e) {
 		if ($('#bootstrap-gallery').length != 0 && $('#bootstrap-gallery').is(':visible')) {
-			if (e.which == 37 && $('#bootstrap-gallery-prev').is(':visible')) ExpandImage($('a#bootstrap-gallery-prev'));
-			else if (e.which == 39 && $('#bootstrap-gallery-next').is(':visible')) ExpandImage($('a#bootstrap-gallery-next'));
+			if (e.which == 37 && $('#bootstrap-gallery-prev').is(':visible')) $('#bootstrap-gallery-prev').trigger('click');
+			else if (e.which == 39 && $('#bootstrap-gallery-next').is(':visible')) $('#bootstrap-gallery-next').trigger('click');
 			else return;
 			
 			e.preventDefault();
@@ -26,7 +30,7 @@ $(document).ready(function() {
 	});
 });
 
-function ExpandImage(link) {
+function ExpandImage(link, selector) {
 	// Add modal gallery HTML if not present in DOM
 	if ($('#bootstrap-gallery').length == 0) {
 		$(GetGalleryHTML()).appendTo(document.body);
@@ -40,8 +44,8 @@ function ExpandImage(link) {
 	var url = $(link).attr('href');
 	var title;
 	
-	// Link is not a thumbnail
-	if ($(link).hasClass('show-gallery')) {
+	// This is a simply link, just open the gallery
+	if ($(link).find('img').length == 0) {
 		// Title is the "title" attribute of link
 		title = $(link).attr('title');
 		
@@ -51,18 +55,19 @@ function ExpandImage(link) {
 		// If not found, title is the "alt" attribute of existing image in page
 		if (!title) title = $('img[src="' + $(link).attr('href') + '"]').attr('alt');
 		
-		// If link is not a thumbnail we can't define previous and next links
+		// If link is a simply link, we can't define previous and next links
 		$('a#bootstrap-gallery-prev').hide();
 		$('a#bootstrap-gallery-next').hide();
 	} else {
-		// Getting link, we can't use $(link) because of next and previous links...
-		var link = $('a.thumbnail[href="' + $(link).attr('href') + '"]');
-		
 		// Title is "alt" attribute of thumbnail
-		title = link.find('img').attr('alt');
+		title = $(link).find('img').attr('alt');
+		
+		// Get all thubnails links and remove elements which don't contain image
+		var thumbnails = $(selector);
+		thumbnails = $.grep(thumbnails, function(elem) { return $(elem).has('img'); });
+		thumbnails = $(thumbnails);
 		
 		// Getting position of current link
-		var thumbnails = $('a.thumbnail');
 		var pos = thumbnails.index(link);	
 		
 		// If there are a previous thumbnail, we display the link
@@ -70,7 +75,7 @@ function ExpandImage(link) {
 			var prev = thumbnails.get(pos - 1);
 			
 			$('a#bootstrap-gallery-prev').show();
-			$('a#bootstrap-gallery-prev').attr('href', $(prev).attr('href'));
+			$('a#bootstrap-gallery-prev').off('click').click(function() { ExpandImage(prev, selector); return false; });
 		} else {
 			$('a#bootstrap-gallery-prev').hide();
 		}
@@ -80,20 +85,28 @@ function ExpandImage(link) {
 			var next = thumbnails.get(pos + 1);
 			
 			$('a#bootstrap-gallery-next').show();
-			$('a#bootstrap-gallery-next').attr('href', $(next).attr('href'));
+			$('a#bootstrap-gallery-next').off('click').click(function() { ExpandImage(next, selector); return false; });
 		} else {
 			$('a#bootstrap-gallery-next').hide();
 		}
 	}
 		
 	// Setting values
-	$('#bootstrap-gallery .modal-body img').attr('src', url);
+	$('#bootstrap-gallery .modal-body img').attr('src', url).off('load').load(function() {
+		// Get real image width
+		var image = new Image();
+		image.src = url;
+		var real_width = image.width;
+		
+		// Set max-width of container to image width
+		$('#bootstrap-gallery .modal-dialog').css('max-width', real_width);
+    });
 	
 	if (typeof title === typeof undefined || title === false) title = '';
 	$('#bootstrap-gallery .modal-header .modal-title').text(title);	
 	
 	$('#bootstrap-gallery a#bootstrap-gallery-extend').attr('href', url);
-	$('#bootstrap-gallery').modal('show');
+	$('#bootstrap-gallery').modal('show');	
 }
 
 // Getting modal gallery HTML
@@ -108,8 +121,8 @@ function GetGalleryHTML() {
 		   "</div>" +
 		   "<div class='modal-body'>" +
 		   "<img src='' />" +
-		   "<a id='bootstrap-gallery-prev' class='carousel-control left' href='#modal-carousel' data-slide='prev' onclick='ExpandImage(this); return false;'><i class='glyphicon glyphicon-chevron-left'></i></a>" +
-		   "<a id='bootstrap-gallery-next' class='carousel-control right' href='#modal-carousel' data-slide='next'  onclick='ExpandImage(this); return false;'><i class='glyphicon glyphicon-chevron-right'></i></a>" +
+		   "<a id='bootstrap-gallery-prev' class='carousel-control left' href='#modal-carousel' data-slide='prev'><i class='glyphicon glyphicon-chevron-left'></i></a>" +
+		   "<a id='bootstrap-gallery-next' class='carousel-control right' href='#modal-carousel' data-slide='next'><i class='glyphicon glyphicon-chevron-right'></i></a>" +
 		   "</div>" +
 		   "</div>" +
 		   "</div>" +

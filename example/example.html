@@ -7,7 +7,7 @@
 
 		<title>Bootstrap gallery</title>
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../bootstrap-gallery.css">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,37 +20,44 @@
 	
 	<body>
 		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<h1>Bootstrap gallery</h1>
-				</div>
-			</div>
+
+			<h1>Bootstrap gallery</h1>
+
+			<h2>Gallery 1</h2>
 			
 			<div class="row">
 				<div class="col-xs-3">
-					<a href="img/autumn.jpg" class="thumbnail">
-						<img src="img/autumn-thumb.jpg" alt="Autumn" />
+					<a href="img/autumn.jpg" class="thumbnail gallery1">
+						<img src="img/autumn.jpg" alt="Small picture : Autumn" />
 					</a>
 				</div>
 				
 				<div class="col-xs-3">
-					<a href="img/landscape.jpg" class="thumbnail">
+					<a href="img/landscape.jpg" class="thumbnail gallery1">
 						<img src="img/landscape-thumb.jpg" alt="Landscape" />
 					</a>
 				</div>
-				
+			</div>
+			
+			<h2>Gallery 2</h2>
+					
+			<div class="row">
 				<div class="col-xs-3">
-					<a href="img/london.jpg" class="thumbnail">
+					<a href="img/london.jpg" class="thumbnail gallery2">
 						<img src="img/london-thumb.jpg" alt="London" />
 					</a>
 				</div>
 				
 				<div class="col-xs-3">
-					<a href="img/sunrise.jpg" class="thumbnail">
+					<a href="img/sunrise.jpg" class="thumbnail gallery2">
 						<img src="img/sunrise-thumb.jpg" alt="Sunrise" />
 					</a>
 				</div>
-
+			</div>
+			
+			<h2>Links</h2>
+			
+			<div class="row">			
 				<div class="col-xs-12">
 					<p><img src="img/beach.jpg" alt="Beach" style="width: 100%" /></p>
 					
@@ -61,8 +68,16 @@
 			</div>
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="../bootstrap-gallery.js"></script>
+		
+		<script>
+		$(document).ready(function() {
+			$('a.thumbnail.gallery1').bootstrapGallery();
+			$('a.thumbnail.gallery2').bootstrapGallery();
+			$('a.show-gallery').bootstrapGallery();
+		});
+		</script>
 	</body>
 </html>

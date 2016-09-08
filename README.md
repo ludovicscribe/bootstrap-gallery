@@ -1,10 +1,10 @@
 # Bootstrap gallery
 
-With this script and Bootstrap, you will easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : https://ludovicscribe.fr/blog/galerie-images-bootstrap
+With this script and Bootstrap, you can easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : https://ludovicscribe.fr/blog/galerie-images-bootstrap
 
 ## Prerequisites
 
-To use this script you will need Bootstrap, a famous CSS framework, and jQuery. I developped the script with Bootstrap v3.3.7 and jQuery v1.12.4 but newest versions should work.
+To use this script you will need Bootstrap, a famous CSS framework, and jQuery. I developped the script with Bootstrap v3.3.7 and jQuery v1.12.4 but other versions should work.
 
 ## Open the gallery with thumbnails
 
@@ -50,21 +50,11 @@ Then, just use the default Bootstrap thumbnail component and set your thumbnail 
 </div>
 ```
 
-Finnaly, declare your gallery selector :
-
-```html
-<script type="text/javascript">
-$(document).ready(function() {
-	$('a.thumbnail').bootstrapGallery();
-});
-</script>
-```
-
 That's all ! You can now click on a thumbnails to open the gallery. The title displayed in gallery is the thumbnail alt attribute.
 
 ## Multiple galleries on the same page
 
-The selector used to find the next and previous image is the same that was used to open the gallery. So, you can use different selectors to create multiple galleries :
+You can create multiple galleries on the same page using the `data-gallery` attribute to specify the gallery id :
 
 ```html
 <div class="container">   
@@ -72,13 +62,13 @@ The selector used to find the next and previous image is the same that was used 
 	
 	<div class="row">
         <div class="col-xs-3">
-            <a href="images/image1.jpg" class="thumbnail gallery1">
+            <a href="images/image1.jpg" class="thumbnail" data-gallery="gallery1">
                 <img src="images/image1-thumb.jpg" alt="Image 1" />
             </a>
         </div>
         
         <div class="col-xs-3">
-            <a href="images/image2.jpg" class="thumbnail gallery1">
+            <a href="images/image2.jpg" class="thumbnail" data-gallery="gallery1">
                 <img src="images/image2-thumb.jpg" alt="Image 2" />
             </a>
         </div>
@@ -88,25 +78,18 @@ The selector used to find the next and previous image is the same that was used 
 		
 	<div class="row">
         <div class="col-xs-3">
-            <a href="images/image3.jpg" class="thumbnail gallery2">
+            <a href="images/image3.jpg" class="thumbnail" data-gallery="gallery2">
                 <img src="images/image3-thumb.jpg" alt="Image 3" />
             </a>
         </div>
         
         <div class="col-xs-3">
-            <a href="images/image4.jpg" class="thumbnail gallery2">
+            <a href="images/image4.jpg" class="thumbnail"  data-gallery="gallery2">
                 <img src="images/image4-thumb.jpg" alt="Image 4" />
             </a>
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$('a.thumbnail.gallery1').bootstrapGallery();
-	$('a.thumbnail.gallery2').bootstrapGallery();
-});
-</script>
 ```
 
 ## Open the gallery with links
@@ -117,15 +100,42 @@ You can also open the gallery with a link :
 <a href="images/image1.jpg" class="show-gallery" title="My title">Link with title</a>
 ```
 
-In this case, you have to declare your link selector :
-<script type="text/javascript">
-$(document).ready(function() {
-	$('a.show-gallery').bootstrapGallery();
-});
-</script>
+In this case, the title is defined in the `title` attribute of link. If there is no `title` attribute on link, the script search the title in `alt` attribute of thumbnail whose link target is set to the same image :
+
+```html
+<div class="container">   
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <a href="images/image1.jpg" class="thumbnail">
+                <img src="images/image1-thumb.jpg" alt="Image 1" />
+            </a>
+        </div>
+    </div>
+
+    <p><a href="images/image1.jpg" class="show-gallery">Link without title, but target image has it's thumbnail on page</a></p>
+</div>
 ```
 
-In this case, the title is defined in the title attribute of link.
+If there are no thumbnail whose link target is set to the same image, the title is `alt` attribute of the full size image, if it is displayed on page :
+
+```html
+<img src="images/image1.jpg" alt="Image 1" />
+<a href="images/image1.jpg" class="show-gallery">Link without title, but target image is displayed on page</a>
+```
+
+## Custom selectors
+
+The default CSS selectors used to open the gallery are `a.thumbnail` and `a.show-gallery` but if you want use your owns selectors, you can declare them :
+
+```html
+<a href="images/image1.jpg" class="custom-selector" title="Link with custom selector">Link with custom selector</a>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('a.custom-selector').bootstrapGallery();
+});
+</script>
+``` 
 
 The project archive contains examples for each use case. Images used in this examples are rights free, you can download them on Pixabay :
 - Autumn : https://pixabay.com/fr/automne-rivi%C3%A8re-nature-972786/

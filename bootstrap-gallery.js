@@ -7,9 +7,12 @@
  * https://ludovicscribe.fr/
  */
 
+var gallerySelector = '';
  
  $.fn.bootstrapGallery = function() {
 	// Install click event on links
+	if (gallerySelector != '') gallerySelector += ', ';
+	gallerySelector += this.selector;
 	
 	this.click(function() {
 		ExpandImage(this);
@@ -50,7 +53,7 @@ function ExpandImage(link) {
 		title = $(link).attr('title');
 		
 		// If not found, title is the "alt" attribute of image in existing thumbnail link
-		if (!title) title = $('a[href="' + $(link).attr('href') + '"].thumbnail img').attr('alt');
+		if (!title) title = $('a[href="' + $(link).attr('href') + '"]').filter(gallerySelector).has('img').find('img').attr('alt');
 		
 		// If not found, title is the "alt" attribute of existing image in page
 		if (!title) title = $('img[src="' + $(link).attr('href') + '"]').attr('alt');
@@ -61,10 +64,18 @@ function ExpandImage(link) {
 	} else {
 		// Title is "alt" attribute of thumbnail
 		title = $(link).find('img').attr('alt');
+
+		// Get all thubnails links with same data-gallery attribute
+		var thumbnails = $(gallerySelector);
+		var gallery = $(link).attr('data-gallery');
+		if (gallery) thumbnails = thumbnails.filter('[data-gallery="' + gallery + '"]')
+		else thumbnails = thumbnails.filter(':not([data-gallery])');
 		
-		// Get all thubnails links and remove elements which don't contain image
-		var thumbnails = $(selector);
-		thumbnails = $.grep(thumbnails, function(elem) { return $(elem).has('img'); });
+		// Remove elements which don't contain image
+		thumbnails = $.grep(thumbnails, function(elem) {
+			return $(elem).has('img').length != 0;
+		});
+		
 		thumbnails = $(thumbnails);
 		
 		// Getting position of current link

@@ -27,8 +27,8 @@
 			
 			<div class="row">
 				<div class="col-xs-3">
-					<a href="img/autumn.jpg" class="thumbnail">
-						<img src="img/autumn.jpg" alt="Small picture : Autumn" />
+					<a href="img/autumn-thumb.jpg" class="thumbnail">
+						<img src="img/autumn-thumb.jpg" alt="Small picture : Autumn" />
 					</a>
 				</div>
 				
@@ -41,41 +41,57 @@
 			
 			<h2>Multiple galeries</h2>
 					
-			<p>Just set the data-gallery attribute on link to define the gallery id.</p>
-					
+			<p>Just set the <code>data-gallery</code> attribute on link to define the gallery identifier.</p>
+						
 			<div class="row">
-				<div class="col-xs-3">
-					<a href="img/london.jpg" class="thumbnail gallery2" data-gallery="gallery1">
-						<img src="img/london-thumb.jpg" alt="London" />
-					</a>
+				<div class="col-xs-6">
+					<h3>Gallery 1</h3>
+					
+					<div class="row">
+						<div class="col-xs-6">
+							<a href="img/autumn.jpg" class="thumbnail" data-gallery="gallery1">
+								<img src="img/autumn-thumb.jpg" alt="Autumn" />
+							</a>
+						</div>
+						
+						<div class="col-xs-6">
+							<a href="img/landscape.jpg" class="thumbnail" data-gallery="gallery1">
+								<img src="img/landscape-thumb.jpg" alt="Landscape" />
+							</a>
+						</div>
+					</div>
 				</div>
 				
-				<div class="col-xs-3">
-					<a href="img/sunrise.jpg" class="thumbnail gallery2" data-gallery="gallery1">
-						<img src="img/sunrise-thumb.jpg" alt="Sunrise" />
-					</a>
+				<div class="col-xs-6">
+					<h3>Gallery 2</h3>
+					
+					<div class="row">
+						<div class="col-xs-6">
+							<a href="img/london.jpg" class="thumbnail" data-gallery="gallery2">
+								<img src="img/london-thumb.jpg" alt="London" />
+							</a>
+						</div>
+						
+						<div class="col-xs-6">
+							<a href="img/sunrise.jpg" class="thumbnail" data-gallery="gallery2">
+								<img src="img/sunrise-thumb.jpg" alt="Sunrise" />
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			
 			<h2>Links</h2>
 			
-			<div class="row">			
-				<div class="col-xs-12">
-					<p><img src="img/beach.jpg" alt="Beach" style="width: 100%" /></p>
-					
-					<p><a href="img/sunrise.jpg" class="show-gallery" title="My custom title">Link with title</a></p>
-					<p><a href="img/sunrise.jpg" class="show-gallery">Link witout title, but target image has it's thumbnail on page</a></p>
-					<p><a href="img/beach.jpg" class="show-gallery">Link without title, but target image is displayed on page</a></p>
-				</div>
-			</div>
+			<p><img src="img/beach.jpg" alt="Beach" style="width: 100%" /></p>
+			
+			<p><a href="img/sunrise.jpg" class="show-gallery" title="My custom title">Link with title</a></p>
+			<p><a href="img/sunrise.jpg" class="show-gallery">Link without title, but target image has it's thumbnail on page</a></p>
+			<p><a href="img/beach.jpg" class="show-gallery">Link without title, but target image is displayed on page</a></p>
 			
 			<h2>Custom selector</h2>
 			
-			<div class="row">			
-				<div class="col-xs-12">
-					<p><a href="img/sunrise.jpg" class="custom-selector" title="Link with custom selector">Link with custom selector</a></p>
-				</div>
-			</div>
+			<p><a href="img/sunrise.jpg" class="custom-selector" title="Link with custom selector">Link with custom selector</a></p>
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

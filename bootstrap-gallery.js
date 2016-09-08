@@ -53,10 +53,10 @@ function ExpandImage(link) {
 		title = $(link).attr('title');
 		
 		// If not found, title is the "alt" attribute of image in existing thumbnail link
-		if (!title) title = $('a[href="' + $(link).attr('href') + '"]').filter(gallerySelector).has('img').find('img').attr('alt');
+		if (!title) title = $('a[href="' + url + '"]').filter(gallerySelector).has('img').find('img').attr('alt');
 		
 		// If not found, title is the "alt" attribute of existing image in page
-		if (!title) title = $('img[src="' + $(link).attr('href') + '"]').attr('alt');
+		if (!title) title = $('img[src="' + url + '"]').attr('alt');
 		
 		// If link is a simply link, we can't define previous and next links
 		$('a#bootstrap-gallery-prev').hide();
@@ -142,6 +142,5 @@ function GetGalleryHTML() {
 
 // Init
 $(document).ready(function() {
-	$('a.thumbnail').bootstrapGallery();
-	$('a.show-gallery').bootstrapGallery();
+	$('a.thumbnail, a.show-gallery').bootstrapGallery();
 });

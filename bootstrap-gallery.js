@@ -7,12 +7,12 @@
  * https://ludovicscribe.fr/
  */
 
+ 
  $.fn.bootstrapGallery = function() {
 	// Install click event on links
-	var selector = this.selector;
 	
 	this.click(function() {
-		ExpandImage(this, selector);
+		ExpandImage(this);
 		return false;
 	});
 };
@@ -30,7 +30,7 @@ $(document).ready(function() {
 	});
 });
 
-function ExpandImage(link, selector) {
+function ExpandImage(link) {
 	// Add modal gallery HTML if not present in DOM
 	if ($('#bootstrap-gallery').length == 0) {
 		$(GetGalleryHTML()).appendTo(document.body);
@@ -75,7 +75,7 @@ function ExpandImage(link, selector) {
 			var prev = thumbnails.get(pos - 1);
 			
 			$('a#bootstrap-gallery-prev').show();
-			$('a#bootstrap-gallery-prev').off('click').click(function() { ExpandImage(prev, selector); return false; });
+			$('a#bootstrap-gallery-prev').off('click').click(function() { ExpandImage(prev); return false; });
 		} else {
 			$('a#bootstrap-gallery-prev').hide();
 		}
@@ -85,7 +85,7 @@ function ExpandImage(link, selector) {
 			var next = thumbnails.get(pos + 1);
 			
 			$('a#bootstrap-gallery-next').show();
-			$('a#bootstrap-gallery-next').off('click').click(function() { ExpandImage(next, selector); return false; });
+			$('a#bootstrap-gallery-next').off('click').click(function() { ExpandImage(next); return false; });
 		} else {
 			$('a#bootstrap-gallery-next').hide();
 		}
@@ -128,3 +128,9 @@ function GetGalleryHTML() {
 		   "</div>" +
 		   "</div>";
 }
+
+// Init
+$(document).ready(function() {
+	$('a.thumbnail').bootstrapGallery();
+	$('a.show-gallery').bootstrapGallery();
+});

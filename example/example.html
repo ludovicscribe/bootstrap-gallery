@@ -23,33 +23,35 @@
 
 			<h1>Bootstrap gallery</h1>
 
-			<h2>Gallery 1</h2>
+			<h2>Simple galerie</h2>
 			
 			<div class="row">
 				<div class="col-xs-3">
-					<a href="img/autumn.jpg" class="thumbnail gallery1">
+					<a href="img/autumn.jpg" class="thumbnail">
 						<img src="img/autumn.jpg" alt="Small picture : Autumn" />
 					</a>
 				</div>
 				
 				<div class="col-xs-3">
-					<a href="img/landscape.jpg" class="thumbnail gallery1">
+					<a href="img/landscape.jpg" class="thumbnail">
 						<img src="img/landscape-thumb.jpg" alt="Landscape" />
 					</a>
 				</div>
 			</div>
 			
-			<h2>Gallery 2</h2>
+			<h2>Multiple galeries</h2>
+					
+			<p>Just set the data-gallery attribute on link to define the gallery id.</p>
 					
 			<div class="row">
 				<div class="col-xs-3">
-					<a href="img/london.jpg" class="thumbnail gallery2">
+					<a href="img/london.jpg" class="thumbnail gallery2" data-gallery="gallery1">
 						<img src="img/london-thumb.jpg" alt="London" />
 					</a>
 				</div>
 				
 				<div class="col-xs-3">
-					<a href="img/sunrise.jpg" class="thumbnail gallery2">
+					<a href="img/sunrise.jpg" class="thumbnail gallery2" data-gallery="gallery1">
 						<img src="img/sunrise-thumb.jpg" alt="Sunrise" />
 					</a>
 				</div>
@@ -66,6 +68,14 @@
 					<p><a href="img/beach.jpg" class="show-gallery">Link without title, but target image is displayed on page</a></p>
 				</div>
 			</div>
+			
+			<h2>Custom selector</h2>
+			
+			<div class="row">			
+				<div class="col-xs-12">
+					<p><a href="img/sunrise.jpg" class="custom-selector" title="Link with custom selector">Link with custom selector</a></p>
+				</div>
+			</div>
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -74,9 +84,7 @@
 		
 		<script>
 		$(document).ready(function() {
-			$('a.thumbnail.gallery1').bootstrapGallery();
-			$('a.thumbnail.gallery2').bootstrapGallery();
-			$('a.show-gallery').bootstrapGallery();
+			$('a.custom-selector').bootstrapGallery();
 		});
 		</script>
 	</body>

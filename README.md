@@ -6,7 +6,7 @@ With this script and Bootstrap 4, you can easily create an images gallery. You j
 
 To use this script you will need Bootstrap, a famous CSS framework, and jQuery (tested with Bootstrap v4.1.3 and jQuery v3.3.1).
 
-If you are targetting Bootstrap 3, you must use the v1.0 (tested with Bootstrap v4.1.3 and jQuery v3.3.1).
+If you are targetting Bootstrap 3, you must use the v1.0 (tested with Bootstrap v3.3.7 and jQuery v1.12.4).
 
 ## Open the gallery with thumbnails
 

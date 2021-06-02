@@ -1,5 +1,5 @@
 /*
- * Bootstrap gallery v1.1
+ * Bootstrap gallery v2.0
  * https://github.com/ludovicscribe/bootstrap-gallery
  * https://ludovicscribe.fr/blog/galerie-images-bootstrap
  *
@@ -10,16 +10,19 @@
 #bootstrap-gallery .modal-dialog {
 	margin-left: auto;
 	margin-right: auto;
+	width: 900px;
 }
 
 #bootstrap-gallery .modal-content {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+	border: none;
 }
 
 #bootstrap-gallery .modal-header {
 	padding: 5px 10px;
+	display: block;
 }
 
 #bootstrap-gallery .modal-body {
@@ -45,4 +48,8 @@
 #bootstrap-gallery .modal-header  a.modal-button:hover {
 	text-decoration: none;
 	color: #808080;
+}
+
+#bootstrap-gallery .carousel-control-prev i, #bootstrap-gallery .carousel-control-next i {
+	font-size: 2em;
 }

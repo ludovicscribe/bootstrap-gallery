@@ -1,10 +1,12 @@
 # Bootstrap gallery
 
-With this script and Bootstrap, you can easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : https://ludovicscribe.fr/blog/galerie-images-bootstrap
+With this script and Bootstrap 4, you can easily create an images gallery. You just have to put your image thumbnails on the page, declare your gallery and the script will do the job. If you want, you can read this howto on my blog : https://ludovicscribe.fr/blog/galerie-images-bootstrap
 
 ## Prerequisites
 
-To use this script you will need Bootstrap, a famous CSS framework, and jQuery. I developped the script with Bootstrap v3.3.7 and jQuery v1.12.4 but other versions should work.
+To use this script you will need Bootstrap, a famous CSS framework, and jQuery (tested with Bootstrap v4.1.3 and jQuery v3.3.1).
+
+If you are targetting Bootstrap 3, you must use the v1.0 (tested with Bootstrap v4.1.3 and jQuery v3.3.1).
 
 ## Open the gallery with thumbnails
 
@@ -18,7 +20,11 @@ Firstly, include "bootstrap-gallery.css" and "bootstrap-gallery.js" files on you
 <script type="text/javascript" src="bootstrap-gallery.js"></script>
 ```
 
-Then, just use the default Bootstrap thumbnail component and set your thumbnail links href attribute to original images :
+Then, just set your thumbnail links as follow :
+- add the `thumbnail` class
+- set `href` attribute to original images
+
+Note that `img-thumbnail` class (default Bootstrap 4 thumbnail component) will be automatically added to the class of the pictures.
 
 ```html
 <div class="container">   
@@ -132,7 +138,7 @@ The default CSS selectors used to open the gallery are `a.thumbnail` and `a.show
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('a.custom-selector').bootstrapGallery();
+	bootstrapGallery('a.custom-selector');
 });
 </script>
 ``` 

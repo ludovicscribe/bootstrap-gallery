@@ -1,5 +1,5 @@
 /*
- * Bootstrap gallery v1.1
+ * Bootstrap gallery v2.0
  * https://github.com/ludovicscribe/bootstrap-gallery
  * https://ludovicscribe.fr/blog/galerie-images-bootstrap
  *
@@ -9,12 +9,12 @@
 
 var gallerySelector = '';
  
- $.fn.bootstrapGallery = function() {
+ bootstrapGallery = function(selector) {
 	// Install click event on links
 	if (gallerySelector != '') gallerySelector += ', ';
-	gallerySelector += this.selector;
+	gallerySelector += selector;
 	
-	this.click(function() {
+	$(selector).click(function() {
 		ExpandImage(this);
 		return false;
 	});
@@ -103,7 +103,7 @@ function ExpandImage(link) {
 	}
 		
 	// Setting values
-	$('#bootstrap-gallery .modal-body img').attr('src', url).off('load').load(function() {
+	$('#bootstrap-gallery .modal-body img').off('load').on('load', function() {
 		// Get real image width
 		var image = new Image();
 		image.src = url;
@@ -113,6 +113,8 @@ function ExpandImage(link) {
 		$('#bootstrap-gallery .modal-dialog').css('max-width', real_width);
     });
 	
+	$('#bootstrap-gallery .modal-body img').attr('src', url);
+
 	if (typeof title === typeof undefined || title === false) title = '';
 	$('#bootstrap-gallery .modal-header .modal-title').text(title);	
 	
@@ -126,14 +128,14 @@ function GetGalleryHTML() {
 		   "<div class='modal-dialog modal-lg'>" +
 		   "<div class='modal-content'>" +
 		   "<div class='modal-header'>" +
-		   "<a href='' class='modal-button glyphicon glyphicon-remove' data-dismiss='modal'></a>" +
-		   "<a href='' id='bootstrap-gallery-extend' class='modal-button glyphicon glyphicon-resize-full' target='_blank'></a>" + 
-		   "<h4 class='modal-title'></h4>" +
+		   "<a href='' class='modal-button' data-dismiss='modal'><i class='fas fa-times'></i></a>" +
+		   "<a href='' id='bootstrap-gallery-extend' class='modal-button' target='_blank'><i class='fas fa-expand-alt'></i></a>" + 
+		   "<h5 class='modal-title'></h5>" +
 		   "</div>" +
 		   "<div class='modal-body'>" +
 		   "<img src='' />" +
-		   "<a id='bootstrap-gallery-prev' class='carousel-control left' href='#modal-carousel' data-slide='prev'><i class='glyphicon glyphicon-chevron-left'></i></a>" +
-		   "<a id='bootstrap-gallery-next' class='carousel-control right' href='#modal-carousel' data-slide='next'><i class='glyphicon glyphicon-chevron-right'></i></a>" +
+		   "<a id='bootstrap-gallery-prev' class='carousel-control-prev' href='#' data-slide='prev'><i class='fas fa-chevron-left'></i></a>" +
+		   "<a id='bootstrap-gallery-next' class='carousel-control-next' href='#' data-slide='next'><i class='fas fa-chevron-right'></i></a>" +
 		   "</div>" +
 		   "</div>" +
 		   "</div>" +
@@ -142,5 +144,6 @@ function GetGalleryHTML() {
 
 // Init
 $(document).ready(function() {
-	$('a.thumbnail, a.show-gallery').bootstrapGallery();
+	bootstrapGallery('a.thumbnail, a.show-gallery');
+	$('a.thumbnail img').addClass('img-thumbnail');
 });
